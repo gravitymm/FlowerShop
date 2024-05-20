@@ -4,12 +4,13 @@ import {
 } from "./API.js";
 
 export class Flower {
-    constructor(name, type, price, description, image) {
+    constructor(name, type, price, description, image, count) {
         this.name = name;
         this.type = type;
         this.price = price;
         this.description = description;
         this.image = image;
+        this.count = count;
     }
 }
 
@@ -20,8 +21,8 @@ class OrderManager {
         for (const orderItem of Object.values(localStorage)) {
             try {
                 let orI = JSON.parse(orderItem);
-                this.orderItems.push(new Flower(orI.name, orI.type, orI.price, orI.description, orI.image));
-                this.totalPrice += orI.price;
+                this.orderItems.push(new Flower(orI.name, orI.type, orI.price, orI.description, orI.image, orI.count));
+                this.totalPrice += orI.price * orI.count;
             } catch (error) {}
         }
     }
@@ -29,12 +30,14 @@ class OrderManager {
     addFlowerToOrder(flower) {
         this.orderItems.push(flower);
         this.totalPrice += flower.price;
+        flower.count += 1;
 
         localStorage.setItem(flower.name, JSON.stringify(flower));
     }
 
     removeFlowerFromOrder(flower) {
         const index = this.orderItems.indexOf(flower);
+        flower.count = 0;
         if (index !== -1) {
             this.orderItems.splice(index, 1);
             this.totalPrice -= flower.price;
@@ -54,7 +57,12 @@ class OrderManager {
                 <img src="${flower.image}" alt="${flower.name}">
                 <h3>${flower.name}</h3>
                 <p>Цена: ${flower.price} руб.</p>
-                <button class="dell-btn" data-name="${flower.name}">Удалить</button>
+                <div class="buttonPanel">
+                    <button class="dell-btn" data-name="${flower.name}">Удалить</button>
+                    <button class="minus-btn" data-name="${flower.name}">-</button>
+                    <label for="flowerCount" data-name="${flower.name}">${flower.count}</label>
+                    <button class="plus-btn" data-name="${flower.name}">+</button>
+                </div>
             `;
             orderElement.appendChild(card);
         });
@@ -66,6 +74,47 @@ class OrderManager {
                 const flower = this.orderItems.find(f => f.name === flowerName);
                 if (flower) {
                     this.removeFlowerFromOrder(flower);
+                    document.getElementById("totalPrice").textContent = this.totalPrice.toString();
+                }
+            });
+        });
+
+        const minusButtons = orderElement.querySelectorAll('.minus-btn');
+        minusButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const flowerName = event.target.getAttribute('data-name');
+                const flower = this.orderItems.find(f => f.name === flowerName);
+                if (flower) {
+                    flower.count -= 1;
+                    if (flower.count === 0) {
+                        this.removeFlowerFromOrder(flower);
+                    }
+                    else {
+                        this.totalPrice -= flower.price;
+                        localStorage.setItem(flower.name, JSON.stringify(flower));
+                        orderManager.renderOrder();
+                        document.getElementById("totalPrice").textContent = this.totalPrice.toString();
+                    }
+                }
+            });
+        });
+
+        const plusButtons = orderElement.querySelectorAll('.plus-btn');
+        plusButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                const flowerName = event.target.getAttribute('data-name');
+                const flower = this.orderItems.find(f => f.name === flowerName);
+                if (flower) {
+                    flower.count += 1;
+                    if (flower.count === 0) {
+                        this.removeFlowerFromOrder(flower);
+                    }
+                    else {
+                        this.totalPrice += flower.price;
+                        localStorage.setItem(flower.name, JSON.stringify(flower));
+                        orderManager.renderOrder();
+                        document.getElementById("totalPrice").textContent = this.totalPrice.toString();
+                    }
                 }
             });
         });

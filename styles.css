@@ -230,3 +230,9 @@ input{
 .registerModalError {
     color: red;
 }
+
+.buttonPanel {
+    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+}

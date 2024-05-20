@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <span class="close" id="closeOrder">&times;</span>
                 <h2>Оформление</h2>
                 <form id="orderForm">
+                    <label for="orderName" id="sum"></label>
                     <label for="orderName">Имя покупатея:</label>
                     <input type="text" id="orderName" name="name" required>
                     <label for="orderAddress">Адресс доставки</label>
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const orderModal = document.getElementById("orderModal");
     const closeOrderModalBtn = document.getElementById("closeOrder");
+    const sumLabel = document.getElementById("sum");
 
     document.getElementById('orderForm').addEventListener('submit', async (event) => {
         window.alert("заказ оформлен, уходите")
@@ -36,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.getElementById("order-button").addEventListener('click', (e) => {
+        sumLabel.textContent = `Ваш заказ на сумму ${orderManager.totalPrice} руб`;
         orderModal.style.display = "block";
     });
 

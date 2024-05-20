@@ -91,7 +91,7 @@ fetch('flowers.txt')
         const lines = data.trim().split('\n');
         lines.forEach(line => {
             const [type, name, price, description, image] = line.split(';');
-            catalog.addFlower(new Flower(name, type, parseInt(price), description, image));
+            catalog.addFlower(new Flower(name, type, parseInt(price), description, image, 0));
         });
         catalog.renderCatalog();
     })
