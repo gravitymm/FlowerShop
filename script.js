@@ -124,7 +124,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Получаем кнопки для открытия модальных окон
     const openLoginModalBtn = document.getElementById('openLoginModal');
-
     const openRegisterModalBtn = document.getElementById('openRegisterModal');
 
     // Получаем кнопки для закрытия модальных окон
@@ -136,15 +135,17 @@ document.addEventListener('DOMContentLoaded', () => {
         event.preventDefault();
         const username = document.getElementById('loginModalUsername').value;
         const password = document.getElementById('loginPassword').value;
+        const errorLabel = document.getElementById('loginModalError');
         try {
             const success = await login(username, password);
             if (success) {
                 console.log("Вход успешен");
                 loginModal.style.display = "none";
                 localStorage.setItem("username", username);
+                localStorage.setItem("email", success);
                 location.reload();
             } else {
-                console.log("Неверно")
+                errorLabel.textContent = "Неверное имя пользователя, пароль или почта";
             }
 
         } catch (error) {
@@ -160,6 +161,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('registerEmail').value;
         const password = document.getElementById('registerPassword').value;
         const password2 = document.getElementById('registerConfirmPassword').value;
+        const errorLabel = document.getElementById('registerModalError');
         if (password === password2) {
             try {
                 const success = await register(username, email, password);
@@ -169,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem("username", username);
                     location.reload();
                 } else {
-                    console.log("Пользователь с таким именем или почтой уже есть")
+                    errorLabel.textContent = "Пользователь с таким именем или почтой уже есть";
                 }
             } catch (error) {
                 console.error('Ошибка при регистрации:', error);

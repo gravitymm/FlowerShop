@@ -5,8 +5,9 @@ async function login(username, password) {
         for (const user of data) {
             let userNameAPI = user.userName;
             let passwordAPI = user.password;
+            let emailAPI = user.Email;
             if (userNameAPI === username && passwordAPI === password) {
-                return true;
+                return emailAPI;
             }
         }
         return false;

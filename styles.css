@@ -222,3 +222,11 @@ input{
 .hidden {
     display: none;
 }
+
+.loginModalError {
+    color: red;
+}
+
+.registerModalError {
+    color: red;
+}
