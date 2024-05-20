@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Цветочный магазин</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <div class="logo">Логотип</div>
+  <nav>
+    <ul>
+      <li><a href="index.html">Каталог</a></li>
+      <li><a href="order.html">Заказы</a></li>
+      <li id="openLoginModalLi"><a id="openLoginModal">Войти</a></li>
+      <li id="openRegisterModalLi"><a id="openRegisterModal">Зарегистрироваться</a></li>
+      <li class="hidden" id="username"></li>
+      <li class="hidden" id="exit-button-li"><button id="exit-button">Выход</button></li>
+    </ul>
+  </nav>
+</header>
+<main>
+  <div class="sidebar">
+    <h2>Выбор цветов</h2>
+    <ul class="flower-types">
+      <li><button class="filter-button" id="allTypesButton">Все</button></li>
+      <li><button class="filter-button">Пионы</button></li>
+      <li><button class="filter-button">Розы</button></li>
+      <li><button class="filter-button">Лилии</button></li>
+      <li><button class="filter-button">Флоксы</button></li>
+    </ul>
+  </div>
+  <div class="order">
+    <h2>Каталог</h2>
+    <div class="catalog">
+    </div>
+  </div>
+</main>
+<footer>
+</footer>
+
+<div id="myModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <img class="modal-image" src="" alt="">
+    <h2 class="modal-title"></h2>
+    <p class="modal-description"></p>
+    <p class="modal-price"></p>
+  </div>
+</div>
+
+<script src="index.js" type="module"></script>
+</body>
+</html>

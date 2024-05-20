@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветочный магазин</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+    <div class="logo">Логотип</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Каталог</a></li>
+            <li><a href="order.html">Заказы</a></li>
+            <li id="openLoginModalLi"><a id="openLoginModal">Войти</a></li>
+            <li id="openRegisterModalLi"><a id="openRegisterModal">Зарегистрироваться</a></li>
+            <li class="hidden" id="username"></li>
+            <li class="hidden" id="exit-button-li"><button id="exit-button">Выход</button></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="order">
+        <h2>Ваш заказ</h2>
+        <div class="order-list">
+
+        </div>
+    </div>
+    <div class="order-summary">
+        <h2>Сумма заказа</h2>
+        <p>Общая цена: <span id="totalPrice">0</span> руб.</p>
+        <button id="order-button">Заказать</button>
+    </div>
+</main>
+<footer>
+</footer>
+
+<script src="order.js" type="module"></script>
+</body>
+</html>
