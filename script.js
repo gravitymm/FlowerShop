@@ -43,6 +43,7 @@ class OrderManager {
             this.totalPrice -= flower.price;
             localStorage.removeItem(flower.name);
             this.renderOrder();
+            document.getElementById("totalPrice").textContent = this.totalPrice.toString();
         }
     }
 
