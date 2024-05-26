@@ -39,6 +39,19 @@ nav ul li a:hover {
     text-decoration: none;
 }
 
+nav ul li button{
+    color: #4CAF50;
+    background: none;
+    font-size: 20px;
+    text-decoration: none;
+}
+
+nav ul li button:hover {
+    color: #327533;
+    background: none;
+    text-decoration: none;
+}
+
 main {
     display: flex;
 }

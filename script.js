@@ -75,7 +75,6 @@ class OrderManager {
                 const flower = this.orderItems.find(f => f.name === flowerName);
                 if (flower) {
                     this.removeFlowerFromOrder(flower);
-                    document.getElementById("totalPrice").textContent = this.totalPrice.toString();
                 }
             });
         });
@@ -131,7 +130,6 @@ const exitButton = document.getElementById('exit-button-li');
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Функция для создания модального окна
     function createModal(id, title, formContent) {
         const modal = document.createElement('div');
         modal.id = id;
@@ -152,13 +150,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.appendChild(modal);
     }
 
-    // Создание модального окна для входа
     createModal('loginModal', 'Вход', `
         <label for="loginPassword">Пароль:</label>
         <input type="password" id="loginPassword" name="password" required>
     `);
 
-    // Создание модального окна для регистрации
     createModal('registerModal', 'Регистрация', `
         <label for="registerEmail">Email:</label>
         <input type="email" id="registerEmail" name="email" required>
@@ -168,19 +164,15 @@ document.addEventListener('DOMContentLoaded', () => {
         <input type="password" id="registerConfirmPassword" name="confirmPassword" required>
     `);
 
-    // Получаем модальные окна
     const loginModal = document.getElementById("loginModal");
     const registerModal = document.getElementById("registerModal");
 
-    // Получаем кнопки для открытия модальных окон
     const openLoginModalBtn = document.getElementById('openLoginModal');
     const openRegisterModalBtn = document.getElementById('openRegisterModal');
 
-    // Получаем кнопки для закрытия модальных окон
     const closeLoginModalBtn = document.getElementById("closeloginModal");
     const closeRegisterModalBtn = document.getElementById("closeregisterModal");
 
-    // Обработчик отправки формы для входа
     document.getElementById('loginModalForm').addEventListener('submit', async (event) => {
         event.preventDefault();
         const username = document.getElementById('loginModalUsername').value;
@@ -195,16 +187,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 localStorage.setItem("email", success);
                 location.reload();
             } else {
-                errorLabel.textContent = "Неверное имя пользователя, пароль или почта";
+                errorLabel.textContent = "Неверное имя пользователя или пароль";
             }
 
         } catch (error) {
             console.error('Ошибка при входе:', error);
-            // Здесь может быть логика для обработки ошибки входа
         }
     });
 
-    // Обработчик отправки формы для регистрации
     document.getElementById('registerModalForm').addEventListener('submit', async (event) => {
         event.preventDefault();
         const username = document.getElementById('registerModalUsername').value;
@@ -229,27 +219,22 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Открываем модальное окно для входа
     openLoginModalBtn.onclick = function () {
         loginModal.style.display = "block";
     }
 
-    // Открываем модальное окно для регистрации
     openRegisterModalBtn.onclick = function () {
         registerModal.style.display = "block";
     }
 
-    // Закрываем модальное окно для входа
     closeLoginModalBtn.onclick = function () {
         loginModal.style.display = "none";
     }
 
-    // Закрываем модальное окно для регистрации
     closeRegisterModalBtn.onclick = function () {
         registerModal.style.display = "none";
     }
 
-    // Закрываем модальные окна при клике вне их
     window.onclick = function (event) {
         if (event.target === loginModal) {
             loginModal.style.display = "none";

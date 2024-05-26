@@ -18,9 +18,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 <h2>Оформление</h2>
                 <form id="orderForm">
                     <label for="orderName" id="sum"></label>
-                    <label for="orderName">Имя покупатея:</label>
+                    <label for="orderName">Имя покупателя:</label>
                     <input type="text" id="orderName" name="name" required>
-                    <label for="orderAddress">Адресс доставки</label>
+                    <label for="orderAddress">Адрес доставки</label>
                     <input type="text" id="orderAddress" name="name" required>
                     <button type="submit">Оформить</button>
                 </form>

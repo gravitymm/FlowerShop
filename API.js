@@ -35,7 +35,6 @@ async function checkUser(username, email) {
     }
 }
 
-// Функция для выполнения POST запроса
 async function register(username, email, password) {
     try {
         if (!await checkUser(username, email)) {
